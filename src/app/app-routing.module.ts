@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'inicio',
-    component:InicioComponent
+    component: InicioComponent
   }
   // {
   //   path: 'home',
