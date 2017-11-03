@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
 import { InicioComponent } from './inicio/inicio.component';
+
 // import { HomeComponent } from './home/home.component';
 
 @NgModule({
