@@ -118,13 +118,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "ed",
+      "hub",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "ed",
+      "hub",
       "kebab-case"
     ],
     "use-input-property-decorator": true,

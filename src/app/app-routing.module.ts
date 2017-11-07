@@ -1,10 +1,10 @@
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { OrganizacionesComponent } from './pages/organizaciones/organizaciones.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MaterialDemoComponent } from './material/material-demo/material-demo.component';
-// import { HomeComponent } from './home/home.component';
-import { InicioComponent } from './inicio/inicio.component';
+import { InicioComponent } from './pages/inicio/inicio.component';
 import { AppComponent } from './app.component';
-
+import { ProyectosComponent } from './pages/proyectos/proyectos.component';
 const routes: Routes = [
   {
     path: '',
@@ -12,17 +12,21 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'material-demo',
-    component: MaterialDemoComponent
-  },
-  {
     path: 'inicio',
     component: InicioComponent
+  },
+  {
+    path: 'proyectos',
+    component: ProyectosComponent
+  },
+  {
+    path: 'usuarios',
+    component: UsuariosComponent
+  },
+  {
+    path: 'organizaciones',
+    component: OrganizacionesComponent
   }
-  // {
-  //   path: 'home',
-  //   component: HomeComponent
-  // }
 ];
 
 @NgModule({
