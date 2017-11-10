@@ -1,4 +1,4 @@
-import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { UsuariosRoutingModule } from './pages/usuarios/usuarios-routing.module';
 import { OrganizacionesComponent } from './pages/organizaciones/organizaciones.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -20,17 +20,17 @@ const routes: Routes = [
     component: ProyectosComponent
   },
   {
-    path: 'usuarios',
-    component: UsuariosComponent
-  },
-  {
     path: 'organizaciones',
     component: OrganizacionesComponent
-  }
+  },
+  { path: '**', component: InicioComponent } 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    UsuariosRoutingModule
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,15 +1,87 @@
-import { Component, OnInit } from '@angular/core';
+import { Usuario } from '../../models/usuario';
+import { UsuariosService } from '../../services/usuarios.service';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'ed-usuarios',
+  selector: 'hub-usuarios',
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.css']
 })
+
 export class UsuariosComponent implements OnInit {
 
-  constructor() { }
+  private usuarios:Usuario[];
+
+  constructor(private _usuariosService: UsuariosService,private router : Router,private dialog:   MatDialog ) {
+    
+   }
 
   ngOnInit() {
+    this.obtenerUsuarios();
+  }
+
+  // obtenerUsuarios(){
+  //   this._usuariosService.obtener().subscribe(
+  //     result =>{
+  //       this.usuarios=result.datos;
+  //       console.log (result);
+  //     },
+  //     err =>{
+  //       console.log(err);
+  //     }
+  //   )
+  // }
+  // Recibe de respuesta un objeto de tipo Usuarios
+  obtenerUsuarios(){
+    this._usuariosService.obtener().subscribe(
+      result =>{
+        this.usuarios=result;
+        console.log (result);
+      },
+      err =>{
+        console.log(err);
+      }
+    )
+  }
+
+  editarUsuario(usuario:Usuario){
+    console.log(usuario);
+    if (usuario) {
+      this.router.navigate(['/usuarios/editar', usuario]);
+    } 
+  }
+  adicionarUsuario(){
+      this.router.navigate(['/usuarios/adicionar']);
+  }
+
+  eliminarUsuario(usuario:Usuario):void{
+    console.log(usuario);
+    let dialogRef = this.dialog.open(ModalEliminarUsuario, {
+      width: '350px',
+      data: usuario 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //aqui hacer la llamada para eliminar elemento o crear un metodo en el modal
+      console.log(result);
+    });
+  }
+}
+
+@Component({
+  selector: 'modal-eliminar-usuario',
+  templateUrl: 'modal-eliminar-usuario.html',
+})
+export class ModalEliminarUsuario {
+
+  constructor(
+    public dialogRef: MatDialogRef<ModalEliminarUsuario>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  cancelarClick(): void {
+    this.dialogRef.close();
   }
 
 }

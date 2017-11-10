@@ -1,0 +1,30 @@
+<div class="col-md-6 col-md-offset-3">
+    <form class="adicionar-form">
+      <div class="button">
+          <button mat-button [routerLink]="['/usuarios']" color="primary">
+            <mat-icon mat-list-icon>done</mat-icon>
+            Aceptar
+          </button>
+          <button mat-button [routerLink]="['/usuarios']" color="warn">
+            <mat-icon mat-list-icon>cancel</mat-icon>
+            Cancelar
+          </button>
+        </div>
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nombre" value="">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" [formControl]="emailFormControl">
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Direción invalida
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email es <strong>requerido</strong>
+          </mat-error>
+        </mat-form-field>  
+      </div>
+    </form>
+</div>

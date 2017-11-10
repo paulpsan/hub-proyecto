@@ -1,3 +1,3 @@
 export const GLOBAL = {
-    url: 'http://localhost:9999/firmador'
+    url: 'https://test.adsib.gob.bo/api_backend/api/'
 };

@@ -2,23 +2,19 @@
     <button mat-icon-button>
       <!-- <mat-icon>menu</mat-icon> -->
     </button>
-    <span>CATALOGO SOFTWARE LIBRE</span>
+    <a [routerLink]="['/inicio']">
+      <span >CATALOGO SOFTWARE LIBRE</span>
+    </a>
     <nav>
-      <a>
-        <button mat-button color="primary" [routerLink]="['/proyectos']">
+        <button mat-button color="primary" routerLinkActive="actvive" [routerLink]="['/proyectos']">
           <span>Proyectos</span>
         </button>
-      </a>
-      <a>
-        <button mat-button color="primary" [routerLink]="['/usuarios']">
+        <button mat-button color="primary" routerLinkActive="actvive" [routerLink]="['/usuarios']">
             <span>Usuarios</span>  
         </button>
-      </a>
-      <a>
-        <button mat-button color="primary" [routerLink]="['/organizaciones']">
+        <button mat-button color="primary" routerLinkActive="actvive" [routerLink]="['/organizaciones']">
             <span>Organizaciones</span>
         </button>
-      </a>
     </nav>
-  </mat-toolbar>
+</mat-toolbar>
 <router-outlet></router-outlet>

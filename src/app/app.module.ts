@@ -1,10 +1,12 @@
+import { UsuariosService } from './services/usuarios.service';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { UsuariosModule } from './pages/usuarios/usuarios.module';
 import { ProyectosService } from './services/proyectos.service';
 import { platformCoreDynamic } from '@angular/compiler';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {CdkTableModule} from '@angular/cdk/table';
 
@@ -13,8 +15,9 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { ProyectosComponent } from './pages/proyectos/proyectos.component';
-import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { OrganizacionesComponent } from './pages/organizaciones/organizaciones.component';
+// import { AdicionarComponent } from './pages/usuarios/adicionar/adicionar.component';
+// import { EditarComponent } from './pages/usuarios/editar/editar.component';
 
 
 @NgModule({
@@ -22,8 +25,8 @@ import { OrganizacionesComponent } from './pages/organizaciones/organizaciones.c
     AppComponent,
     InicioComponent,
     ProyectosComponent,
-    UsuariosComponent,
-    OrganizacionesComponent
+    OrganizacionesComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,
@@ -31,15 +34,14 @@ import { OrganizacionesComponent } from './pages/organizaciones/organizaciones.c
     BrowserAnimationsModule,
     HttpModule,
     MaterialModule,
-    FormsModule,
-    ReactiveFormsModule
+    UsuariosModule
   ],
   exports: [
     CdkTableModule
   ],
-  providers: [ProyectosService],
+  providers: [ProyectosService,UsuariosService],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  // platformCoreDynamic().bootstrapModule(AppModule);
-}
+export class AppModule {}
+  platformBrowserDynamic().bootstrapModule(AppModule);
+
