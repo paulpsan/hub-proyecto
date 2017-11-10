@@ -64,7 +64,7 @@
                      class="form-control"
                      formControlName="email"> -->
             </div>
-            <button mat-button type="submit" color="primary"  [disabled]="!userForm.valid">
+            <button mat-button (click)="adicionar()" color="primary"  [disabled]="!userForm.valid">
               <mat-icon mat-list-icon>add_box</mat-icon>
               Adicionar
             </button>

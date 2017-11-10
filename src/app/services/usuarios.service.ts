@@ -20,11 +20,30 @@ export class UsuariosService {
     .map((res:Response)=>res.json().datos)
     .catch((error:any)=>Observable.throw(error.json().error || 'Server error'))
   }
+
+  findById(id:number):Observable<Usuario>{
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    return this._http.get(this.url+'usuarios/' + id)
+    .map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Error'));
+  }
+
   adicionar(usuario:Usuario):Observable<Usuario[]>{
     return this._http.post(this.url+'usuarios', usuario)
     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
-
   }
+
+  editar(usuario:Usuario):Observable<Usuario[]>{
+    return this._http.put(this.url+'usuarios/'+usuario._id , usuario)
+    .map((res:Response) => res.json())
+    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+  deleteUserById(id: number): Observable<boolean> {
+    return this._http.delete(this.url+'usuarios/' + id)
+      .map((res:Response) => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
   // obtener(){
   //   let headers = new Headers({ 'Content-Type': 'application/json' });
   //   // headers.append('Authorization', pin);

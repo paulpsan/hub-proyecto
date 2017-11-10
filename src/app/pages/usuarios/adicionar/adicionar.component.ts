@@ -7,7 +7,8 @@ import {FormControl,FormGroup, Validators} from '@angular/forms';
 @Component({
   selector: 'hub-adicionar',
   templateUrl: './adicionar.component.html',
-  styleUrls: ['./adicionar.component.css']
+  styleUrls: ['./adicionar.component.css'],
+  providers:[UsuariosService]
 })
 export class AdicionarComponent implements OnInit {
 
@@ -49,11 +50,24 @@ export class AdicionarComponent implements OnInit {
   }
   onSubmit(){
     let usuario: Usuario = new Usuario(
-      '',
+      null,
       this.userForm.controls['nombre'].value,
       this.userForm.controls['email'].value,
       '','','','');
-      this._usuariosService.adicionar(usuario).subscribe();
+      this._usuariosService.adicionar(usuario).subscribe(res=>this.usuario=res);
+      this.userForm.reset();
+      this.router.navigate(['/usuarios'])
+  }
+  adicionar(){
+    let usuario: Usuario = new Usuario(
+      null,
+      this.userForm.controls['nombre'].value,
+      this.userForm.controls['email'].value,
+      '','','','');
+      this._usuariosService.adicionar(usuario).subscribe(res=>{this.sub=res;
+      console.log(this.sub.target.value);});
+      this.userForm.reset();
+      this.router.navigate(['/usuarios'])
   }
 
 

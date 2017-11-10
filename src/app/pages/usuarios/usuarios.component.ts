@@ -2,6 +2,8 @@ import { Usuario } from '../../models/usuario';
 import { UsuariosService } from '../../services/usuarios.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Observable';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -49,7 +51,7 @@ export class UsuariosComponent implements OnInit {
   editarUsuario(usuario:Usuario){
     console.log(usuario);
     if (usuario) {
-      this.router.navigate(['/usuarios/editar', usuario]);
+      this.router.navigate(['/usuarios/editar', usuario._id]);
     } 
   }
   adicionarUsuario(){
@@ -64,10 +66,17 @@ export class UsuariosComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //aqui hacer la llamada para eliminar elemento o crear un metodo en el modal
-      console.log(result);
+
+      this._usuariosService.deleteUserById(result._id).subscribe(
+            res => {
+              this.obtenerUsuarios();
+              this.router.navigate(['/usuarios']);
+              console.log('done');
+            }
+      );
     });
   }
+ 
 }
 
 @Component({
