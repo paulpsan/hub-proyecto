@@ -1,3 +1,4 @@
+import { ProyectosRoutingModule } from './pages/proyectos/proyectos-routing.module';
 import { UsuariosRoutingModule } from './pages/usuarios/usuarios-routing.module';
 import { OrganizacionesComponent } from './pages/organizaciones/organizaciones.component';
 import { NgModule } from '@angular/core';
@@ -29,7 +30,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    UsuariosRoutingModule
+    UsuariosRoutingModule,
+    ProyectosRoutingModule
   ],
   exports: [RouterModule]
 })

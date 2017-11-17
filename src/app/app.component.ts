@@ -6,4 +6,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'hub';
+  navLinks : any[] =[
+    {
+      label:'Proyectos',
+      path:'/proyectos'
+    },
+    {
+      label:'Usuarios',
+      path:'/usuarios'
+    },
+    {
+      label:'Organizaciones',
+      path:'/organizaciones'
+    },
+  ];
 }

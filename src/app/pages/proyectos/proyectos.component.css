@@ -1,3 +1,17 @@
-.mat-list-icon {
+/* .mat-list-icon {
   color: rgba(0, 0, 0, 0.54);
+} */
+.acciones{
+  text-align: right;
+}
+.principal{
+  cursor: pointer;
+  text-decoration: none;
+}
+.example-card {
+  width: 400px;
+}
+.header-info{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  text-transform: uppercase;
 }

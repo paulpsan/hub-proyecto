@@ -1,10 +1,12 @@
-import { Usuario } from '../../models/usuario';
-import { UsuariosService } from '../../services/usuarios.service';
+import { HubInterceptor } from '../../common/interceptor/hub.interceptor';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
-import { Observable } from 'rxjs/Observable';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
+
+import { Usuario } from '../../models/usuario';
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'hub-usuarios',
@@ -15,6 +17,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class UsuariosComponent implements OnInit {
 
   private usuarios:Usuario[];
+  private respuesta: any;
 
   constructor(private _usuariosService: UsuariosService,private router : Router,private dialog:   MatDialog ) {
     
@@ -39,8 +42,9 @@ export class UsuariosComponent implements OnInit {
   obtenerUsuarios(){
     this._usuariosService.obtener().subscribe(
       result =>{
-        this.usuarios=result;
-        console.log (result);
+        this.respuesta=result;
+        this.usuarios=this.respuesta.datos;
+        console.log (this.respuesta.datos);
       },
       err =>{
         console.log(err);
@@ -51,9 +55,11 @@ export class UsuariosComponent implements OnInit {
   editarUsuario(usuario:Usuario){
     console.log(usuario);
     if (usuario) {
+      debugger;
       this.router.navigate(['/usuarios/editar', usuario._id]);
     } 
   }
+ 
   adicionarUsuario(){
       this.router.navigate(['/usuarios/adicionar']);
   }
@@ -67,16 +73,18 @@ export class UsuariosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
-      this._usuariosService.deleteUserById(result._id).subscribe(
+      this._usuariosService.eliminarId(result._id).subscribe(
             res => {
-              this.obtenerUsuarios();
-              this.router.navigate(['/usuarios']);
+              //AQUI colocamos las notificaciones!!
+              setTimeout(()=>
+              { 
+                this.obtenerUsuarios();
+              }, 1000);
               console.log('done');
             }
       );
     });
   }
- 
 }
 
 @Component({

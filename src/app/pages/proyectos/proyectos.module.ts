@@ -1,3 +1,4 @@
+import { HttpService } from '../../services/http.service';
 
 import { HubInterceptor } from '../../common/interceptor/hub.interceptor';
 import { MaterialModule } from '../../material/material.module';
@@ -7,20 +8,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { CrearEditarComponent } from './crear-editar/crear-editar.component';
-import { ModalEliminarUsuario, UsuariosComponent } from './usuarios.component';
-import { UsuariosRoutingModule } from './usuarios-routing.module';
-import { UsuariosService } from '../../services/usuarios.service';
+import { ModalEliminarProyecto, ProyectosComponent } from './proyectos.component';
+import { ProyectosRoutingModule } from './proyectos-routing.module';
+import { ProyectosService } from '../../services/proyectos.service';
+import { ProyectoComponent } from './proyecto/proyecto.component';
 
 @NgModule({ 
   declarations:[
-    ModalEliminarUsuario,
+    ModalEliminarProyecto,
     CrearEditarComponent,
-    UsuariosComponent,
+    ProyectosComponent,
+    ProyectoComponent,
   ],
   imports:[
     CommonModule,
     MaterialModule,
-    UsuariosRoutingModule,
+    ProyectosRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -34,9 +37,10 @@ import { UsuariosService } from '../../services/usuarios.service';
       useClass: HubInterceptor,
       multi: true
     },
-    UsuariosService
+    ProyectosService,
+    HttpService
   ],
-  entryComponents: [ModalEliminarUsuario]
+  entryComponents: [ModalEliminarProyecto]
 })
-export class UsuariosModule   {
+export class ProyectosModule   {
 }
