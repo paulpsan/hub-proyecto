@@ -16,7 +16,7 @@ export class ProyectosService {
     
   }
   getProyectos(){
-    let myParams = new HttpParams();
+    let myParams = new HttpParams();  
     myParams=myParams.append('pagina','1');
     myParams=myParams.append('limite','2');
     console.log(myParams);

@@ -33,6 +33,21 @@ export class ProyectosComponent implements OnInit {
     };
    }
   ngOnInit() {
+    this.obtenerProyectos();
+  }
+  obtenerProyectos(){
+    this._httpService.obtener('proyectos').subscribe(
+      result =>{
+        this.respuesta=result;
+        this.proyectos=this.respuesta.datos;
+        console.log (this.respuesta.datos);
+      },
+      err =>{
+        console.log(err);
+      }
+    ) 
+  }
+  obtenerProyectosPag(){
     console.log(this.paginacion.pagina);
     this._httpService.obtenerPaginado('proyectos',this.paginacion).subscribe(
       result =>{
@@ -45,18 +60,6 @@ export class ProyectosComponent implements OnInit {
       }
     )
   }
-  //   this._proyectosService.getProyectos().subscribe(
-  //     result =>{
-  //       this.respuesta=result;
-  //       this.proyectos=this.respuesta.datos;
-  //       console.log (this.respuesta.datos);
-  //     },
-  //     err =>{
-  //       console.log(err);
-  //     }
-  //   )
-  // }
-
   mostrar(proyecto:Proyecto){
     this.idSelect=proyecto.id;
     this.mostrarToggle=!this.mostrarToggle;
@@ -74,7 +77,7 @@ export class ProyectosComponent implements OnInit {
   }
   irProyecto(proyecto:Proyecto){
     if (proyecto) {
-      this.router.navigate(['/proyectos/proyecto', proyecto.id]);
+      this.router.navigate(['/proyectos/charts', proyecto.id]);
     } 
   }
  

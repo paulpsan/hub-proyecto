@@ -35,9 +35,9 @@ export class HttpService {
     .catch((error:any)=>Observable.throw(error || 'Server error'))
   }
 
-  buscarId(id:number):Observable<any>{
+  buscarId(name:string,id:number):Observable<any>{
     let headers = new Headers({ 'Content-Type': 'application/json' });
-    return this._http.get(this.url+'usuarios/' + id)
+    return this._http.get(this.url+name+'/'+id)
     .map((res:Response) => {return res})
     .catch((error:any) => Observable.throw(error || 'Error'));
   }

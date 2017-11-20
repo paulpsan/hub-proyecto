@@ -37,7 +37,7 @@
               <a class="principal" (click)="mostrar(proyecto)">
                 <h4 matLine>{{proyecto.nombre}}
                 </h4>
-                <p matLine>{{proyecto.web_url}}
+                <p matLine>{{proyecto.descripcion}}
                 </p>
               </a>
               <div class="secundario" *ngIf="mostrarToggle && proyecto.id==idSelect">
@@ -47,23 +47,27 @@
                   </mat-card-header>
                   <mat-card-content>
                     <p>
-                      <i class="fa fa-user-circle">
-                      </i> Usuarios
+                      <i class="fa fa-user-circle"></i>
+                        <span> Usuarios: </span> {{proyecto.usuarios}} 
                     </p>
                     <p>
-                    <i class="fa fa-code"></i>
-                      Commits
+                      <i class="fa fa-code"></i>
+                        <span>Commits: </span> {{proyecto.totalCommits}}
+                    </p>
+                    <p>
+                      <i class="fa fa-calendar"></i>
+                        <span> Creacion: </span> {{proyecto.fecha_creacion}}
+                       fecha
                       
                     </p>
                     <p>
-                        <i class="fa fa-calendar"></i>
-                      Creacion: fecha
-                      
+                       <i class="fa fa-calendar"></i>
+                        <span>  Ultima actividad: </span> {{proyecto.fecha_ultima_actividad}}
                     </p>
                     <p>
-                        <i class="fa fa-calendar"></i>
-                        Ultima actividad
-                    </p>
+                      <i class="fa fa-gitlab"></i>
+                       <span>Url:</span> <a href="{{proyecto.http_url_repo}}" target="#" >{{proyecto.http_url_repo}}</a>
+                   </p>
                   </mat-card-content>
                   <mat-card-actions>
                     <button mat-button (click)=irProyecto(proyecto)>Ir</button>

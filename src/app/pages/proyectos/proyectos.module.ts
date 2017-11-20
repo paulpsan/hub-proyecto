@@ -13,6 +13,7 @@ import { ProyectosRoutingModule } from './proyectos-routing.module';
 import { ProyectosService } from '../../services/proyectos.service';
 import { ProyectoComponent } from './proyecto/proyecto.component';
 
+
 @NgModule({ 
   declarations:[
     ModalEliminarProyecto,
