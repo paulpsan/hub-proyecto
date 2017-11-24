@@ -1,32 +1,85 @@
-<section class="main">
+<!-- <section class="main">
     <button mat-button (click)="adicionarUsuario()" color="warn">
         <mat-icon mat-list-icon>person_add</mat-icon>
     </button>
     <table class="table">
-      <thead>
-      <tr>
-        <th></th>
-        <th>Nombre</th>
-        <th>email</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let user of usuarios">
-        <th scope="row">
-            <img alt="avatar" src="assets/images/avatar-user.png" style="width: 50px !important">
-        </th>
-        <td>{{user.nombre}}</td>
-        <td>{{user.email}}</td>
-        <td class="acciones">
-          <button mat-button (click)="editarUsuario(user)" color="primary">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nombre</th>
+                <th>email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios">
+                <th scope="row">
+                    <img alt="avatar" src="assets/images/avatar-user.png" style="width: 50px !important">
+                </th>
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.email}}</td>
+                <td class="acciones">
+                    <button mat-button (click)="editarUsuario(usuario)" color="primary">
             <mat-icon mat-list-icon>mode_edit</mat-icon>
           </button>
-          <button mat-button (click)="eliminarUsuario(user)" color="warn">
+                    <button mat-button (click)="eliminarUsuario(usuario)" color="warn">
             <mat-icon mat-list-icon>delete</mat-icon>
           </button>
-        </td>
-      </tr>
-      </tbody>
+                </td>
+            </tr>
+        </tbody>
     </table>
-  </section>
+</section> -->
+
+
+<div class="container">
+    <div class="row">
+        <h3>Usuarios</h3>
+        <div class="col-md-8" style="text-align: center">
+            <span>Buscar:</span>
+            <mat-form-field class="example-form-field">
+                <input matInput type="text" placeholder="Buscar Personas" />
+                <button mat-button matSuffix mat-icon-button aria-label="Search">
+                  <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4" style="text-align: right">
+            <button mat-button (click)="adicionarUsuario()" color="primary">
+                <mat-icon mat-list-icon>add</mat-icon>adicionar
+            </button>
+        </div>
+    </div>
+
+
+    <div class="well" *ngFor="let usuario of usuarios">
+        <div class="row">
+            <div class="col-md-1">
+                <img alt="avatar" src="assets/images/avatar-user.png" style="width: 50px !important">
+            </div>
+            <div class="col-md-5">
+                <a class="titulo_usuario" (click)="irUsuario(usuario)">
+                    <h4 matLine>{{usuario.nombre}}</h4>
+                </a>
+                <p>
+                    {{usuario.email}}
+                </p>
+                <p>
+                    Descripcion del Usuario
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>Commits</p>
+                <p>Lenguajes de programacion</p>
+            </div>
+            <div class="col-md-2">
+                <div class="col-md-5"><span>Clasificación</span></div>
+                <div class="col-md-7">
+                    <!-- <star-rating-comp [starType]="'svg'"></star-rating-comp> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent($event)">
+    </mat-paginator> -->
+</div>

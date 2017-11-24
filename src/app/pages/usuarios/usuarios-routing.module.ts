@@ -1,12 +1,14 @@
-import { CrearEditarComponent } from './crear-editar/crear-editar.component';
+import { CrearEditarComponent } from './usuario/crear-editar/crear-editar.component';
 import { UsuariosComponent } from './usuarios.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 const routes: Routes = [
   {path: 'usuarios', component: UsuariosComponent},
   {path: 'usuarios/adicionar', component: CrearEditarComponent},
-  {path: 'usuarios/editar/:id', component: CrearEditarComponent}
+  {path: 'usuarios/editar/:id', component: CrearEditarComponent},
+  {path: 'usuarios/:id', component: UsuarioComponent}
 ];
 
 @NgModule({

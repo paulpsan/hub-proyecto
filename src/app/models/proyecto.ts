@@ -12,7 +12,7 @@ export class Proyecto {
         public web_url:string,
         public contador_estrellas:string,
         public totalCommits:string,
-        
-
+        public licencia:string,
+        public icono:string
     ) { }
 }

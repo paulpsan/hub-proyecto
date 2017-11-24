@@ -1,0 +1,52 @@
+<div>
+    <div class="container">
+        <div class="col-md-1">
+            <img alt="avatar" src="assets/images/avatar-user.png" style="width: 50px !important">
+        </div>
+        <div class="col-md-5">
+            <a class="titulo_usuario" (click)="irUsuario(usuario)">
+                <h4 matLine>{{usuario.nombre}}</h4>
+            </a>
+            <p>
+                {{usuario.email}}
+            </p>
+            <p>URl:http://gitlab.gob.bo/psanchez</p>
+        </div>
+        <div class="editar">
+            <i class="fa fa-cogs" aria-hidden="true"></i> <a (click)="editarUsuario(usuario)">Editar</a>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="contenedor_box">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <h4>Resumen</h4>
+                    <span>{{usuario.descripcion}}</span>
+                </div>
+                <div class="col-md-6">
+                    <p>Primer commit:</p>
+                    <p>Reciente Commit:</p>
+                </div>
+            </div>
+
+            <h4>Historial de Desarrollo:</h4>
+            <div class="col-md-12">
+                <div class="">
+                    <span>Commits por proyecto</span>
+                </div>
+                <div class="">
+                    grafico de commits
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="">
+                    <span>Commits por Lenguajes</span>
+                </div>
+                <div class="">
+                    grafico de commits
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

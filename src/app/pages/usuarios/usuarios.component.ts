@@ -51,6 +51,11 @@ export class UsuariosComponent implements OnInit {
       }
     )
   }
+  irUsuario(usuario){
+    if (usuario) {
+      this.router.navigate(['/usuarios/', usuario._id]);
+    } 
+  }
 
   editarUsuario(usuario:Usuario){
     console.log(usuario);

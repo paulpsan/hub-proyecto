@@ -1,10 +1,11 @@
-import { slideInDownAnimation } from '../../../animations';
+import { slideInDownAnimation } from '../../../../animations';
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormControl,FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Usuario }from '../../../models/usuario'
-import { UsuariosService } from '../../../services/usuarios.service';
-import { UsuariosComponent } from '../usuarios.component';
+import { Usuario }from '../../../../models/usuario'
+import { UsuariosService } from '../../../../services/usuarios.service';
+import { UsuariosComponent } from '../../usuarios.component';
+
 
 @Component({
   selector: 'hub-crear-editar',
@@ -21,8 +22,9 @@ export class CrearEditarComponent implements OnInit {
   acciones:string;
   user: Usuario;
   private sub:any;
- 
   userForm: FormGroup;
+  show:boolean=true;
+
   constructor(private route: ActivatedRoute,
     private router: Router,
     private userService: UsuariosService) { }
@@ -71,7 +73,6 @@ export class CrearEditarComponent implements OnInit {
           this.userForm.controls['nombre'].value,
           this.userForm.controls['email'].value,'','','','');
         this.userService.adicionar(user).subscribe();
- 
       }
  
       this.userForm.reset();
