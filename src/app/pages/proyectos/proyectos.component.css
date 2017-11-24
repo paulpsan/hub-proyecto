@@ -4,9 +4,10 @@
 .acciones{
   text-align: right;
 }
-.principal{
+.titulo_proyecto{
   cursor: pointer;
   text-decoration: none;
+  text-transform: uppercase;
 }
 .example-card {
   width: 400px;

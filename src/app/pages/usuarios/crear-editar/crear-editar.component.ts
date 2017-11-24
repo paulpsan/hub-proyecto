@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { slideInDownAnimation } from '../../../animations';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { FormControl,FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario }from '../../../models/usuario'
@@ -8,9 +9,13 @@ import { UsuariosComponent } from '../usuarios.component';
 @Component({
   selector: 'hub-crear-editar',
   templateUrl: './crear-editar.component.html',
-  styleUrls: ['./crear-editar.component.css']
+  styleUrls: ['./crear-editar.component.css'],
+  animations: [ slideInDownAnimation ]
 })
 export class CrearEditarComponent implements OnInit {
+  @HostBinding('@routeAnimation') routeAnimation = false;
+  @HostBinding('style.display')   display = 'block';
+  @HostBinding('style.position')  position = 'absolute';
 
   id: number;
   acciones:string;
@@ -70,16 +75,10 @@ export class CrearEditarComponent implements OnInit {
       }
  
       this.userForm.reset();
-      setTimeout(()=>
-      { 
-        this.router.navigate(['/usuarios']) 
-      }, 1000);
- 
+      this.router.navigate(['/usuarios']);
     }
   }
- 
   redirectUserPage() {
     this.router.navigate(['/usuarios']);
- 
   }
 }

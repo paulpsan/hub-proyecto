@@ -15,6 +15,7 @@ import { ProyectosModule } from './pages/proyectos/proyectos.module';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { OrganizacionesComponent } from './pages/organizaciones/organizaciones.component';
 
+
 // import { AdicionarComponent } from './pages/usuarios/adicionar/adicionar.component';
 // import { EditarComponent } from './pages/usuarios/editar/editar.component';
 

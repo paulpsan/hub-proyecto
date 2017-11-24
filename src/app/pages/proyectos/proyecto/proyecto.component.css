@@ -1,10 +1,16 @@
+.editar{
+    padding-left: 15px;
+}
 .titulo_proyecto{
     font-size: 24px;
-    margin: 10px
+    text-transform: uppercase;
 }
-.container_resumen{
-
+.contenedor_box{
+    display: flex;
+    margin-top: 15;
+    border-bottom: 1px solid #000;
 }
-.container_referencia{
-    word-wrap: break-word
-};
+.box_detalle{
+    margin: 10px;
+    word-wrap: break-word;
+}

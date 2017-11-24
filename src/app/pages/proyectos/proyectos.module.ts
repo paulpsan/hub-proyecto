@@ -6,20 +6,31 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { StarRatingModule } from 'angular-star-rating';
 
-import { CrearEditarComponent } from './crear-editar/crear-editar.component';
+import { ChartsModule } from "ng2-charts/ng2-charts";
+
+import { EditarComponent } from './proyecto/crear-editar/editar.component';
+import { CrearComponent } from './proyecto/crear-editar/crear.component';
 import { ModalEliminarProyecto, ProyectosComponent } from './proyectos.component';
 import { ProyectosRoutingModule } from './proyectos-routing.module';
 import { ProyectosService } from '../../services/proyectos.service';
 import { ProyectoComponent } from './proyecto/proyecto.component';
+import { CodigoComponent } from './proyecto/charts/codigo.component';
+import { CommitsComponent } from './proyecto/charts/commits.component';
+import { LenguajesComponent } from './proyecto/charts/lenguajes.component';
 
 
 @NgModule({ 
   declarations:[
     ModalEliminarProyecto,
-    CrearEditarComponent,
+    CrearComponent,
+    EditarComponent,
     ProyectosComponent,
     ProyectoComponent,
+    CodigoComponent,
+    CommitsComponent,
+    LenguajesComponent
   ],
   imports:[
     CommonModule,
@@ -28,6 +39,8 @@ import { ProyectoComponent } from './proyecto/proyecto.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ChartsModule,
+    StarRatingModule.forRoot(),
     
   ],
   exports:[

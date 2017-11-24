@@ -1,5 +1,6 @@
+import { FormGroup, FormControl } from "@angular/forms";
 import { HubInterceptor } from '../../common/interceptor/hub.interceptor';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
@@ -15,7 +16,7 @@ import { ProyectosService } from '../../services/proyectos.service';
   styleUrls: ['./proyectos.component.css']
 })
 export class ProyectosComponent implements OnInit {
-
+ 
   private proyectos : Proyecto[];
   private respuesta: any;
   private mostrarToggle:boolean=false;
@@ -68,16 +69,9 @@ export class ProyectosComponent implements OnInit {
   pageEvent(event:string){
     console.log(event);
   }
-
-  editar(proyecto:Proyecto){
-    console.log(proyecto);
-    if (proyecto) {
-      this.router.navigate(['/proyectos/editar', proyecto.id]);
-    } 
-  }
   irProyecto(proyecto:Proyecto){
     if (proyecto) {
-      this.router.navigate(['/proyectos/charts', proyecto.id]);
+      this.router.navigate(['/proyectos', proyecto.id]);
     } 
   }
  

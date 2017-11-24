@@ -1,3 +1,4 @@
+import { Proyecto } from '../../../models/proyecto';
 import { ResultFunc } from 'rxjs/observable/GenerateObservable';
 import { HttpService } from '../../../services/http.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,10 +12,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProyectoComponent implements OnInit {
 
+  
   id: number;
   private sub:any;
-  private proyecto:any;
-  
+  private proyecto:Proyecto;
+  private show : boolean = false;
+
   
   constructor(private route:ActivatedRoute,private router:Router,private _httpService:HttpService) { }
 
@@ -29,8 +32,14 @@ export class ProyectoComponent implements OnInit {
     this._httpService.buscarId('proyectos',this.id).subscribe(
       result=>{
         this.proyecto=result;
+        this.show=true;
         console.log(this.proyecto);
       }
     )
+  }
+  editarProyecto(proyecto){
+    if (proyecto) {
+      this.router.navigate(['/proyectos/editar', proyecto.id]);
+    } 
   }
 }
