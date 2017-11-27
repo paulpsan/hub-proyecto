@@ -1,12 +1,11 @@
 import { HubInterceptor } from '../../common/interceptor/hub.interceptor';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 import { Usuario } from '../../models/usuario';
-import { UsuariosService } from '../../services/usuarios.service';
+import { HttpService } from '../../services/http.service';
 
 @Component({
   selector: 'hub-usuarios',
@@ -19,7 +18,7 @@ export class UsuariosComponent implements OnInit {
   private usuarios:Usuario[];
   private respuesta: any;
 
-  constructor(private _usuariosService: UsuariosService,private router : Router,private dialog:   MatDialog ) {
+  constructor(private _httpService: HttpService,private router : Router) {
     
    }
 
@@ -28,7 +27,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   // obtenerUsuarios(){
-  //   this._usuariosService.obtener().subscribe(
+  //   this._httpService.obtener().subscribe(
   //     result =>{
   //       this.usuarios=result.datos;
   //       console.log (result);
@@ -40,7 +39,7 @@ export class UsuariosComponent implements OnInit {
   // }
   // Recibe de respuesta un objeto de tipo Usuarios
   obtenerUsuarios(){
-    this._usuariosService.obtener().subscribe(
+    this._httpService.obtener('usuarios').subscribe(
       result =>{
         this.respuesta=result;
         this.usuarios=this.respuesta.datos;
@@ -56,53 +55,9 @@ export class UsuariosComponent implements OnInit {
       this.router.navigate(['/usuarios/', usuario._id]);
     } 
   }
-
-  editarUsuario(usuario:Usuario){
-    console.log(usuario);
-    if (usuario) {
-      this.router.navigate(['/usuarios/editar', usuario._id]);
-    } 
-  }
  
   adicionarUsuario(){
       this.router.navigate(['/usuarios/adicionar']);
   }
-
-  eliminarUsuario(usuario:Usuario):void{
-    console.log(usuario);
-    let dialogRef = this.dialog.open(ModalEliminarUsuario, {
-      width: '350px',
-      data: usuario 
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-      this._usuariosService.eliminarId(result._id).subscribe(
-            res => {
-              //AQUI colocamos las notificaciones!!
-              setTimeout(()=>
-              { 
-                this.obtenerUsuarios();
-              }, 1000);
-              console.log('done');
-            }
-      );
-    });
-  }
 }
 
-@Component({
-  selector: 'modal-eliminar-usuario',
-  templateUrl: 'modal-eliminar-usuario.html',
-})
-export class ModalEliminarUsuario {
-
-  constructor(
-    public dialogRef: MatDialogRef<ModalEliminarUsuario>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
-
-  cancelarClick(): void {
-    this.dialogRef.close();
-  }
-
-}

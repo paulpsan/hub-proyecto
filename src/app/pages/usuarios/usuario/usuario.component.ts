@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Usuario } from '../../../models/usuario';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UsuariosService } from '../../../services/usuarios.service';
+import { HttpService } from '../../../services/http.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'hub-usuario',
@@ -14,10 +15,12 @@ export class UsuarioComponent implements OnInit {
   acciones:string;
   usuario: Usuario;
   private sub:any;
+  private show:boolean=false;
   
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private userService: UsuariosService) { }
+    private _httpService: HttpService,
+    private dialog:   MatDialog ) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -25,10 +28,11 @@ export class UsuarioComponent implements OnInit {
     });
  
     if (this.id) { //edit form
-      this.userService.buscarId(this.id).subscribe(
+      this._httpService.buscarId('usuarios',this.id).subscribe(
         resp => {
             this.id = resp._id;
             this.usuario=resp;
+            this.show=true;
             console.log(this.usuario);
          },error => {
           console.log(error);
@@ -36,4 +40,48 @@ export class UsuarioComponent implements OnInit {
       );
     }
   }
+  editarUsuario(usuario:Usuario){
+    console.log(usuario);
+    if (usuario) {
+      this.router.navigate(['/usuarios/editar', usuario._id]);
+    } 
+  }
+
+  eliminarUsuario(usuario:Usuario):void{
+    console.log(usuario);
+    let dialogRef = this.dialog.open(ModalEliminarUsuario, {
+      width: '350px',
+      data: usuario 
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      this._httpService.eliminarId('usuarios',result._id).subscribe(
+            res => {
+              //AQUI colocamos las notificaciones!!
+              // setTimeout(()=>
+              // { 
+              //   this.obtenerUsuarios();
+              // }, 1000);
+              // console.log('done');
+              this.router.navigate(['/usuarios/']);
+            }
+      );
+    });
+  }
+}
+@Component({
+  selector: 'modal-eliminar-usuario',
+  templateUrl: 'modal-eliminar-usuario.html',
+})
+export class ModalEliminarUsuario {
+
+  constructor(
+    public dialogRef: MatDialogRef<ModalEliminarUsuario>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  cancelarClick(): void {
+    this.dialogRef.close();
+  }
+
 }

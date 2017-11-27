@@ -15,9 +15,9 @@ export class AppComponent {
       label:'Usuarios',
       path:'/usuarios'
     },
-    {
-      label:'Organizaciones',
-      path:'/organizaciones'
-    },
+    // {
+    //   label:'Organizaciones',
+    //   path:'/organizaciones'
+    // },
   ];
 }
