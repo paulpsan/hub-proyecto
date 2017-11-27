@@ -15,7 +15,7 @@ export class UsuarioComponent implements OnInit {
   acciones:string;
   usuario: Usuario;
   private sub:any;
-  private show:boolean=false;
+  show:boolean=false;
   
   constructor(private route: ActivatedRoute,
     private router: Router,

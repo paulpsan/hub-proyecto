@@ -17,7 +17,7 @@ import { ProyectosService } from '../../services/proyectos.service';
 })
 export class ProyectosComponent implements OnInit {
  
-  private proyectos : Proyecto[];
+  proyectos : Proyecto[];
   private respuesta: any;
   private mostrarToggle:boolean=false;
   private idSelect;

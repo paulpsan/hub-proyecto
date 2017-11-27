@@ -16,7 +16,7 @@ export class ProyectoComponent implements OnInit {
   id: number;
   private sub:any;
   private proyecto:Proyecto;
-  private show : boolean = false;
+  show : boolean = false;
 
   
   constructor(private route:ActivatedRoute,private router:Router,private _httpService:HttpService) { }

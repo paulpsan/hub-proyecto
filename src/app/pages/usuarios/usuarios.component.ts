@@ -15,7 +15,7 @@ import { HttpService } from '../../services/http.service';
 
 export class UsuariosComponent implements OnInit {
 
-  private usuarios:Usuario[];
+  usuarios:Usuario[];
   private respuesta: any;
 
   constructor(private _httpService: HttpService,private router : Router) {
