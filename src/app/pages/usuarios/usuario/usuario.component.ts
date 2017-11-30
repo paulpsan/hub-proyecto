@@ -55,9 +55,9 @@ export class UsuarioComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
-      this._httpService.eliminarId('usuarios',result._id).subscribe(
-            res => {
+      if(result){
+              this._httpService.eliminarId('usuarios',result.id).subscribe(
+              res => {
               //AQUI colocamos las notificaciones!!
               // setTimeout(()=>
               // { 
@@ -67,6 +67,8 @@ export class UsuarioComponent implements OnInit {
               this.router.navigate(['/usuarios/']);
             }
       );
+      }
+
     });
   }
 }

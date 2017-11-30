@@ -11,12 +11,12 @@ import { UsuariosComponent } from '../../usuarios.component';
   selector: 'hub-crear-editar',
   templateUrl: './crear-editar.component.html',
   styleUrls: ['./crear-editar.component.css'],
-  animations: [ slideInDownAnimation ]
+  // animations: [ slideInDownAnimation ]
 })
 export class CrearEditarComponent implements OnInit {
-  @HostBinding('@routeAnimation') routeAnimation = false;
-  @HostBinding('style.display')   display = 'block';
-  @HostBinding('style.position')  position = 'absolute';
+  // @HostBinding('@routeAnimation') routeAnimation = false;
+  // @HostBinding('style.display')   display = 'block';
+  // @HostBinding('style.position')  position = 'absolute';
 
   id: number;
   acciones:string;

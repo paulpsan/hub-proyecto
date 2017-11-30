@@ -2,7 +2,7 @@
 ## Setup del entorno de desarrollo
 Necesitas instalar:
 * Git
-* Node
+* Node v8.9.1
 * Visual Studio Code
 
 Este proyecto fué generado usando [Angular CLI](https://github.com/angular/angular-cli) version 1.4.9.
